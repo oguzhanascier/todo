@@ -35,8 +35,9 @@ export default {
 <style scoped>
 .form-control {
   height: 50px;
-  border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.234);
-  border-top: 1px solid rgba(0, 0, 0, 0.234);
+  border-top: 3px solid rgba(0, 0, 0, 0.234);
+  border-left: 2px solid rgba(0, 0, 0, 0.234);
+  border-right: none
 }
 </style>
