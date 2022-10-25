@@ -3,7 +3,7 @@
     <input
       type="text"
       class="form-control bg-dark text-white"
-      placeholder="New Task..."
+      placeholder="New Task.."
       v-model="inputValue"
       @keydown.enter="newItem"
     />
@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  props: ["setText"],
   data() {
     return {
       inputValue: "",
@@ -20,13 +21,21 @@ export default {
   methods: {
     newItem() {
       let randomNumber = Math.floor(Math.random() * 100);
-      this.$emit("exportItem", {
-        id: randomNumber,
-        text: this.inputValue,
-        isCompleted: false,
-      });
+
+      if (!this.inputValue.length == 0) {
+        this.$emit("exportItem", {
+          id: randomNumber,
+          text: this.inputValue,
+          isCompleted: false,
+        });
+      }
 
       this.inputValue = "";
+    },
+  },
+  watch: {
+    setText() {
+      this.inputValue = this.setText;
     },
   },
 };
@@ -38,6 +47,11 @@ export default {
   border-bottom: 1px solid rgba(255, 255, 255, 0.234);
   border-top: 3px solid rgba(0, 0, 0, 0.234);
   border-left: 2px solid rgba(0, 0, 0, 0.234);
-  border-right: none
+  border-right: none;
+}
+
+.form-control:focus {
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
 }
 </style>

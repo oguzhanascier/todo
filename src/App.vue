@@ -1,8 +1,12 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="todo-container shadow bg-dark">
-      <new-task @exportItem="todoListItem.push($event)"></new-task>
-      <todo-list :todos="todoListItem"></todo-list>
+      <new-task
+        @exportItem="todoListItem.push($event)"
+        :setText="input.text"
+
+      ></new-task>
+      <todo-list :todos="todoListItem" @data="input.text= $event"></todo-list>
     </div>
   </div>
 </template>
@@ -11,21 +15,29 @@
 import TodoList from "./components/TodoList.vue";
 import NewTask from "./components/NewTask.vue";
 export default {
-  components: { 
+  components: {
     TodoList,
     NewTask,
   },
   data() {
     return {
-      at: "",
+      input: {
+        text:null,
+        isEdit: true,
+
+      },
       todoListItem: [
         { id: 110, text: "Yangın İhbar", isCompleted: true },
         { id: 36, text: "Activex El Temizleme Jeli", isCompleted: false },
+       
+        
       ],
     };
   },
-  methods: {},
-}; 
+  methods: {
+    getIndex() {},
+  },
+};
 </script>
 
 <style>

@@ -16,7 +16,11 @@
           </li>
         </ul>
       </div>
-      <i class="fa-solid fa-trash-can" @click="deleteTodo(index)"></i>
+      <div class="changeButton">
+        <i class="fa-solid fa-pen" @click="editTask(todo,index)"></i>
+        <i class="fa-solid fa-trash-can" @click="deleteTodo(index)"></i>
+      </div>
+
     </div>
   </div>
 </template>
@@ -33,6 +37,13 @@ export default {
     completed(todo) {
       todo.isCompleted = !todo.isCompleted;
     },
+    // edit
+    editTask(todo,index){
+      this.$emit('data', todo.text)
+      console.log('todolist'+ todo.text)
+      this.todos.splice(index, 1);
+
+    }
   },
 
 };
@@ -64,7 +75,7 @@ i {
 
 .fa-trash-can {
   color: #ff9292;
-  opacity: 0;
+  opacity: 0.2;
 }
 
 .todo:hover .fa-trash-can {
@@ -82,4 +93,24 @@ i {
   color: #968d8d44 !important;
   transition: all .5s ease-in;
 }
+
+.changeButton{
+display: flex;
+padding: 10px;
+justify-content: space-between;
+}
+
+.fa-pen{
+  color: lightgreen;
+  margin-right:10px;
+  opacity: .2;
+}
+
+.todo:hover .fa-pen {
+  cursor: pointer;
+  opacity: 1;
+  transition: all .5s ease-in-out;
+}
+
+
 </style>
